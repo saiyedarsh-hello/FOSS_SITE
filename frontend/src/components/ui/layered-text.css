@@ -1,0 +1,71 @@
+/* LayeredText component styles (Tailwind-compatible fallback & enhancements) */
+
+.layered-text-root {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+  font-family: var(--font-heading), 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  font-weight: 900;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  color: #f8fafc;
+  cursor: pointer;
+  user-select: none;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.layered-text-root ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.layered-text-root li {
+  overflow: hidden;
+  position: relative;
+  will-change: transform;
+}
+
+.layered-text-root li p {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: 0;
+  white-space: nowrap;
+  vertical-align: top;
+  color: #f1f5f9;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  transition: color 0.3s ease;
+}
+
+.layered-text-root:hover li:nth-child(odd) p {
+  color: #38bdf8;
+  text-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+}
+
+.layered-text-root:hover li:nth-child(even) p {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .layered-text-root {
+    font-size: var(--md-font-size, 36px) !important;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .layered-text-root li {
+    height: var(--md-height, 35px) !important;
+  }
+
+  .layered-text-root li p {
+    height: var(--md-height, 35px) !important;
+    line-height: calc(var(--md-height, 35px) - 5px) !important;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

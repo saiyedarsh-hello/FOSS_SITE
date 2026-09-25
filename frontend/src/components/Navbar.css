@@ -65,7 +65,31 @@
   filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.65));
 }
 
-/* Lighter, minimal font */
+/* Stacked Brand Name: Club below Foss */
+.brand-name-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.05;
+}
+
+.brand-foss {
+  font-family: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #f8fafc;
+}
+
+.brand-club {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: #38bdf8;
+  text-transform: uppercase;
+}
+
 .brand-name {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 17px;

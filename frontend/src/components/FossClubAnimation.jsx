@@ -234,16 +234,13 @@ export default function FossClubAnimation({
       aria-label="FOSS CLUB"
     >
       <div className="graffiti-title-track">
-        {/* Word 1: FOSS */}
-        <div className="graffiti-word" aria-hidden="true">
+        {/* Line 1: FOSS */}
+        <div className="graffiti-word word-foss" aria-hidden="true">
           {word1.map((c, i) => renderLetter(c, i))}
         </div>
 
-        {/* Word Spacing Gap */}
-        <span className="graffiti-word-gap" aria-hidden="true" />
-
-        {/* Word 2: CLUB */}
-        <div className="graffiti-word" aria-hidden="true">
+        {/* Line 2: CLUB (Stacked below FOSS) */}
+        <div className="graffiti-word word-club" aria-hidden="true">
           {word2.map((c, i) => renderLetter(c, i + 4))}
         </div>
       </div>

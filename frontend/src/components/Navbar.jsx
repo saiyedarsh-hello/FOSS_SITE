@@ -50,7 +50,7 @@ export default function Navbar({ isVisible = true, onOpenJoinModal }) {
   const navigate = useNavigate();
 
   const handleNavClick = (e, targetId) => {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     if (location.pathname === '/') {
       const el = document.getElementById(targetId);
       if (el) {
@@ -74,11 +74,11 @@ export default function Navbar({ isVisible = true, onOpenJoinModal }) {
   return (
     <header className={`site-header ${isVisible ? 'header-visible' : 'header-hidden'}`}>
       <div className="navbar-container">
-        {/* Left: Brand Logo & Club Name */}
+        {/* Left: Brand Logo & Company Name */}
         <div
           className="nav-brand"
-          style={{ cursor: 'pointer' }}
           onClick={(e) => handleNavClick(e, 'hero')}
+          style={{ cursor: 'pointer' }}
           title="FOSS Club Home"
         >
           <img
@@ -87,15 +87,18 @@ export default function Navbar({ isVisible = true, onOpenJoinModal }) {
             className="brand-logo"
             draggable="false"
           />
-          <span className="brand-name">Foss Club</span>
+          <div className="brand-name-stack">
+            <span className="brand-foss">Foss</span>
+            <span className="brand-club">Club</span>
+          </div>
         </div>
 
         {/* Center: Navigation Links */}
         <nav className="nav-center" aria-label="Main Navigation">
           <a
-            href="#hero"
+            href="#about"
             className="nav-link"
-            onClick={(e) => handleNavClick(e, 'hero')}
+            onClick={(e) => handleNavClick(e, 'about')}
           >
             About
           </a>
@@ -105,18 +108,16 @@ export default function Navbar({ isVisible = true, onOpenJoinModal }) {
           >
             Events
           </Link>
-          <a
-            href="#placements"
-            className="nav-link"
-            onClick={(e) => handleNavClick(e, 'placements')}
+          <Link
+            to="/placements"
+            className={`nav-link ${location.pathname === '/placements' ? 'active-nav-link' : ''}`}
           >
             Placements
-          </a>
+          </Link>
         </nav>
 
         {/* Right: Actions Group & Explore */}
         <div className="nav-right">
-
           <div
             className={`explore-action-group ${isHovered ? 'is-active' : ''}`}
             onMouseEnter={() => setIsHovered(true)}
@@ -150,7 +151,7 @@ export default function Navbar({ isVisible = true, onOpenJoinModal }) {
             <button
               type="button"
               className="nav-explore-btn"
-              onClick={(e) => handleNavClick(e, 'domains')}
+              onClick={(e) => handleNavClick(e, 'about')}
               aria-label="Explore"
             >
               <Compass size={15} className="btn-icon" />

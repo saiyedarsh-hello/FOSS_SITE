@@ -20,13 +20,15 @@
 
 .graffiti-title-track {
   display: flex;
-  align-items: baseline;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: flex-start;
-  flex-wrap: wrap;
   width: 100%;
   background: transparent;
   /* Graffiti dynamic forward slant */
   transform: skewX(-6deg);
+  line-height: 0.9;
+  gap: 0px;
 }
 
 .graffiti-word {
@@ -35,9 +37,12 @@
   white-space: nowrap;
 }
 
+.graffiti-word.word-club {
+  margin-top: -0.06em;
+}
+
 .graffiti-word-gap {
-  display: inline-block;
-  width: clamp(14px, 2.2vw, 24px);
+  display: none;
 }
 
 /* Character hit area with 3D perspective */
