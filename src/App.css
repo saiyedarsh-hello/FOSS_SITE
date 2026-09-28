@@ -57,11 +57,14 @@ body {
 .motion-hero-section {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 600px;
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
-  padding-top: 0;
+  padding: 0;
+  margin: 0;
   background: transparent;
   z-index: 2;
 }
@@ -70,7 +73,7 @@ body {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 50% 45%, transparent 35%, rgba(5, 7, 12, 0.55) 75%, rgba(5, 7, 12, 0.88) 100%);
+  background: radial-gradient(circle at 50% 50%, transparent 35%, rgba(5, 7, 12, 0.55) 75%, rgba(5, 7, 12, 0.88) 100%);
   z-index: 1;
 }
 
@@ -80,7 +83,70 @@ body {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 40px 32px 60px;
+  padding: 0;
+}
+
+.hero-centered-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hero-centered-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-centered-content.hero-waiting {
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+}
+
+.hero-centered-content.hero-ready-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Hero Center Stage: Exact middle of page ─────────────────────────────── */
+.hero-center-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  height: 320px;
+  margin: 0 auto;
+}
+
+/* Title overlay in exact middle of whole page */
+.hero-title-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .hero-split-grid {
@@ -110,12 +176,14 @@ body {
   width: 100%;
 }
 
-.hero-ecosystem-column .community-ball-wrapper {
+.hero-ecosystem-column .community-ball-wrapper,
+.hero-ecosystem-column .foss-globe-wrapper,
+.hero-ecosystem-column .hero-globe-anchor-placeholder {
   background: transparent;
   border: none;
   box-shadow: none;
   padding: 0;
-  min-height: 480px;
+  min-height: 280px;
 }
 
 .hero-left-column.hero-waiting,
@@ -140,14 +208,20 @@ body {
   }
 }
 
-/* Action Buttons */
+/* Action Buttons — placed just below the globe */
 .hero-motion-actions {
+  position: absolute;
+  top: calc(50% + 185px);
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-top: 36px;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  margin: 0;
+  z-index: 20;
+  pointer-events: auto;
+  white-space: nowrap;
 }
 
 .motion-btn {
@@ -163,6 +237,152 @@ body {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   letter-spacing: 0.01em;
   border: 1px solid transparent;
+}
+
+/* ─── Ultra-Realistic Skeuomorphic Chromatic Switch Button ─── */
+.chroma-pill-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  height: 60px;
+  min-width: 220px;
+  padding: 5px 6px 5px 26px;
+  border-radius: 9999px;
+  background: radial-gradient(130% 120% at 50% 0%, #15171c 0%, #090a0d 65%, #040507 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top-color: rgba(255, 255, 255, 0.16);
+  border-bottom-color: rgba(0, 0, 0, 0.85);
+  box-shadow: 
+    inset 0 4px 8px rgba(0, 0, 0, 0.95),
+    inset 0 1px 3px rgba(0, 0, 0, 0.9),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.06),
+    0 12px 36px -4px rgba(0, 0, 0, 0.85),
+    0 2px 8px rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: visible;
+}
+
+.chroma-pill-btn:hover {
+  transform: translateY(-2px);
+  border-top-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 
+    inset 0 4px 8px rgba(0, 0, 0, 0.95),
+    inset 0 1px 3px rgba(0, 0, 0, 0.9),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.1),
+    0 18px 48px -6px rgba(0, 0, 0, 0.95),
+    0 0 24px rgba(255, 255, 255, 0.06);
+}
+
+.chroma-pill-btn:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+.chroma-pill-label {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  color: #94a3b8;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.chroma-pill-btn:hover .chroma-pill-label {
+  color: #f1f5f9;
+}
+
+/* ─── The 3D Tactile Slider Knob ─── */
+.chroma-pill-knob {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 48px;
+  border-radius: 9999px;
+  background: radial-gradient(110% 120% at 36% 26%, #292b34 0%, #1c1d23 48%, #111216 100%);
+  box-shadow: 
+    0 6px 18px -2px rgba(0, 0, 0, 0.92),
+    0 2px 6px rgba(0, 0, 0, 0.75),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -3px 6px 0 rgba(0, 0, 0, 0.85);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+/* Photorealistic Chromatic Dispersion Ring */
+.chroma-pill-knob::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 9999px;
+  padding: 1.5px;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(255, 255, 255, 0.15) 0deg,
+    rgba(255, 255, 255, 0.12) 110deg,
+    #ffffff 125deg,
+    #38bdf8 138deg,
+    #a855f7 152deg,
+    rgba(255, 255, 255, 0.1) 170deg,
+    rgba(255, 255, 255, 0.08) 280deg,
+    #ff2255 296deg,
+    #ffea79 308deg,
+    #ffffff 318deg,
+    #00f0ff 328deg,
+    #818cf8 338deg,
+    rgba(255, 255, 255, 0.15) 350deg,
+    rgba(255, 255, 255, 0.15) 360deg
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8));
+}
+
+/* Glass Specular Glint Top-Left */
+.chroma-pill-knob::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 6px;
+  right: 6px;
+  height: 42%;
+  border-radius: 9999px 9999px 65% 65%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.02) 80%, transparent 100%);
+  pointer-events: none;
+}
+
+.chroma-pill-btn:hover .chroma-pill-knob {
+  transform: translateX(4px);
+  box-shadow: 
+    0 8px 24px -2px rgba(0, 0, 0, 0.95),
+    0 3px 8px rgba(0, 0, 0, 0.8),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.48),
+    inset 0 -3px 6px 0 rgba(0, 0, 0, 0.9);
+}
+
+/* The Etched Arrow Icon */
+.chroma-pill-arrow {
+  position: relative;
+  z-index: 2;
+  color: #787a85;
+  filter: drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.95)) drop-shadow(0 1px 0 rgba(255, 255, 255, 0.18));
+  transition: color 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+.chroma-pill-btn:hover .chroma-pill-arrow {
+  color: #f8fafc;
+  transform: translateX(3px);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
 }
 
 .motion-btn.primary-glow {
@@ -1081,11 +1301,11 @@ body {
   margin-top: 4px;
 }
 
-/* ─── Footer ─────────────────────────────────────────────────────────────── */
+/* ─── Footer (Compact) ─────────────────────────────────────────────────── */
 .motion-site-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.07);
   background: #030508;
-  padding: 50px 0 40px;
+  padding: 20px 0 18px;
 }
 
 .footer-inner {
@@ -1093,53 +1313,58 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 28px;
+  gap: 16px;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
 }
 
 .footer-brand-title {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 13.5px;
-  letter-spacing: 0.1em;
+  gap: 8px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
   color: #cbd5e1;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 
 .footer-dot-pulse {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: #ef4444;
 }
 
 .footer-copyright {
-  font-size: 13px;
+  font-size: 12.5px;
   color: #64748b;
   margin: 0;
 }
 
 .footer-right {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 12px;
+  align-items: center;
 }
 
 .footer-links-row {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
 }
 
 .footer-link {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 13px;
+  font-size: 12.5px;
   color: #94a3b8;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -1147,22 +1372,6 @@ body {
 
 .footer-link:hover {
   color: #38bdf8;
-}
-
-.footer-system-status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: #64748b;
-}
-
-.sys-status-indicator {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #34d399;
-  box-shadow: 0 0 8px #34d399;
 }
 
 /* ─── Modal Glass Dialog ─────────────────────────────────────────────────── */

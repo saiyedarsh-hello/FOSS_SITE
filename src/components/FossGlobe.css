@@ -1,0 +1,39 @@
+/* FossGlobe.css - Full Viewport Dynamic 3D Horizon Globe */
+
+.foss-globe-canvas-layer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+  transition: opacity 0.5s ease;
+}
+
+.foss-globe-canvas-layer canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Hero Section Anchor & Interactive Drag Zone */
+.hero-globe-anchor-placeholder {
+  width: 320px;
+  height: 320px;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  pointer-events: auto;
+  cursor: grab;
+  position: relative;
+  user-select: none;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.hero-globe-anchor-placeholder:active {
+  cursor: grabbing;
+}

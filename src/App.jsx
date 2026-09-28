@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import ThreeMotionCanvas from './components/ThreeMotionCanvas';
 import ParticleLoader, { hasLoaderRun } from './components/ParticleLoader';
-import FossEcosystem from './components/FossEcosystem';
+import FossGlobe from './components/FossGlobe';
 import SmoothTextWriter from './components/SmoothTextWriter';
 import AboutSection from './components/AboutSection';
 import TeamSection from './components/TeamSection';
-import KineticManifesto from './components/KineticManifesto';
 import PlacementsDirectory from './components/PlacementsDirectory';
 import EventsPage from './pages/EventsPage';
 import GlassCardDemo from './components/ui/demo';
@@ -54,32 +53,33 @@ function HomePage({ isSiteLoaded, onOpeningComplete, isJoinModalOpen, setIsJoinM
       <ThreeMotionCanvas onOpeningComplete={loaderDone ? onOpeningComplete : undefined} />
       <div className={`hero-depth-vignette ${heroReady ? 'elem-fade-in' : 'elem-hidden'}`} />
 
+      {/* 3D Holographic Globe (transitions from Hero side to About orbital horizon) */}
+      <FossGlobe />
+
       {/* ─── Hero ─── */}
       <section className="motion-hero-section" id="hero">
-        <div className="hero-content-wrapper">
-          <div className="hero-split-grid">
-            <div className={`hero-left-column ${heroReady ? 'hero-ready-in' : 'hero-waiting'}`}>
-              <SmoothTextWriter shouldStart={heroReady} />
-              <div className="hero-motion-actions">
-                <a href="#about" className="motion-btn primary-glow">
-                  <span>Explore Guild</span>
-                  <ArrowRight size={16} />
-                </a>
-                <a
-                  href="#leads"
-                  className="motion-btn secondary-glass"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById('leads')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  <Users size={16} />
-                  <span>Explore Team</span>
-                </a>
+        <div className="hero-content-wrapper hero-centered-wrapper">
+          <div className={`hero-centered-content ${heroReady ? 'hero-ready-in' : 'hero-waiting'}`}>
+            <div className="hero-center-stage">
+              {/* Centered 3D Holographic Globe Anchor */}
+              <div className="hero-globe-anchor-placeholder" id="hero-globe-anchor" />
+
+              {/* Centered Club Name & Tagline Overlay in middle of whole page */}
+              <div className="hero-title-overlay">
+                <SmoothTextWriter shouldStart={heroReady} />
               </div>
-            </div>
-            <div className={`hero-ecosystem-column ${heroReady ? 'hero-ready-in' : 'hero-waiting'}`}>
-              <FossEcosystem />
+
+              {/* Single Current Event Button positioned just below the globe */}
+              <div className="hero-motion-actions">
+                <Link to="/events" className="chroma-pill-btn" aria-label="Current Event">
+                  <span className="chroma-pill-label">Current Event</span>
+                  <span className="chroma-pill-knob">
+                    <svg className="chroma-pill-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -89,7 +89,6 @@ function HomePage({ isSiteLoaded, onOpeningComplete, isJoinModalOpen, setIsJoinM
       <div className={`content-below-hero ${heroReady ? 'elem-fade-in' : 'elem-hidden'}`}>
         <AboutSection />
         <TeamSection />
-        <KineticManifesto />
 
         <footer className="motion-site-footer">
           <div className="section-container footer-inner">
@@ -99,19 +98,14 @@ function HomePage({ isSiteLoaded, onOpeningComplete, isJoinModalOpen, setIsJoinM
                 <span>FOSS CLUB // JAIN UNIVERSITY</span>
               </div>
               <p className="footer-copyright">
-                © {new Date().getFullYear()} Free and Open Source Software Collective. Code in the open.
+                © {new Date().getFullYear()} Free and Open Source Software Collective.
               </p>
             </div>
             <div className="footer-right">
               <div className="footer-links-row">
-                <a href="/placements" className="footer-link">Placements</a>
-                <a href="https://github.com" target="_blank" rel="noreferrer" className="footer-link">GitHub <ExternalLink size={12} /></a>
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" className="footer-link">Instagram <ExternalLink size={12} /></a>
                 <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="footer-link">LinkedIn <ExternalLink size={12} /></a>
                 <a href="#hero" className="footer-link back-to-top">Top ↑</a>
-              </div>
-              <div className="footer-system-status">
-                <span className="sys-status-indicator" />
-                <span>All Systems Operational // Bangalore, India</span>
               </div>
             </div>
           </div>
@@ -198,7 +192,7 @@ export default function App() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isNavbarVisible = isSiteLoaded || location.pathname !== '/';
+  const isNavbarVisible = (isSiteLoaded || location.pathname !== '/') && location.pathname !== '/events';
 
   return (
     <div className="app-root-shell">

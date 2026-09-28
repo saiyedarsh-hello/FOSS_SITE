@@ -3,10 +3,13 @@
 .smooth-text-writer-wrap {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   position: relative;
   z-index: 10;
   width: 100%;
+  pointer-events: none;
 }
 
 /* ─── Eyebrow Badge ──────────────────────────────────────────────────────── */
@@ -20,7 +23,7 @@
   border: 1px solid rgba(56, 189, 248, 0.22);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
   animation: fadeInDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -58,19 +61,31 @@
   font-weight: 600;
 }
 
-/* ─── Main Title: FOSS CLUB ──────────────────────────────────────────────── */
+/* ─── Main Title: FOSS CLUB (Dead Center) ─────────────────────────────────── */
 .foss-club-headline-container {
   position: relative;
-  margin-bottom: 28px;
+  margin: 0 auto;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
 }
 
-/* ─── Secondary Subhead Fade In ───────────────────────────────────────────── */
+/* ─── Secondary Subhead Fade In (Cleanly Aligned Below Name) ──────────────── */
 .writer-subtitle-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin: 14px auto 0;
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(8px);
   transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
 }
 
 .writer-subtitle-wrap.subtitle-visible {
@@ -79,12 +94,16 @@
 }
 
 .writer-tagline {
-  font-size: clamp(22px, 3.2vw, 32px);
+  font-size: clamp(14px, 1.8vw, 22px);
   font-weight: 400;
-  line-height: 1.25;
+  line-height: 1.35;
   color: #cbd5e1;
-  margin-bottom: 14px;
-  letter-spacing: -0.015em;
+  margin: 0 auto;
+  letter-spacing: 0.025em;
+  text-align: center;
+  width: auto;
+  max-width: 100%;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95);
 }
 
 .gradient-highlight {
@@ -99,8 +118,9 @@
   line-height: 1.68;
   color: #94a3b8;
   max-width: 560px;
-  margin: 0;
+  margin: 0 auto;
   font-weight: 350;
+  text-align: center;
 }
 
 @keyframes fadeInDown {

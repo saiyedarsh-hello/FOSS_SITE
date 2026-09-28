@@ -1,4 +1,13 @@
+@font-face {
+  font-family: 'Nasalization';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Nasalization'), local('Nasalization Rg'), url('/fonts/nasalization.woff') format('woff');
+  font-display: swap;
+}
+
 :root {
+  --font-brand: 'Nasalization', 'Nasalization Rg', 'Audiowide', 'Zen Dots', 'Orbitron', 'Space Grotesk', sans-serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
   --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;

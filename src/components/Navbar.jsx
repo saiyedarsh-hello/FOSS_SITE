@@ -88,7 +88,7 @@ export default function Navbar({ isVisible = true, onOpenJoinModal }) {
           title="FOSS Club Home"
         >
           <img
-            src="/foss-logo.svg"
+            src="/foss-logo.png"
             alt="FOSS Club Logo"
             className="brand-logo"
             draggable="false"
